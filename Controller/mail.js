@@ -7,7 +7,7 @@ let $enviarMail = document.querySelector('#form-mail')
 
 // função para validar o formulário
 function validarEmail(email) {
-	let expressao = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
+	let expressao = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+[a-zA-Z]{1,}$/;
 
 	if (!expressao.exec(email)) {
 		return false
@@ -20,12 +20,12 @@ function validarEmail(email) {
 function salvarEmail() {
     swal({
         title: "Importante",
-        text: "Enviar email para:",
+        text: "Digite o teu email:",
         content: {
             element: "input",
             attributes: {
                 type: "email",
-                placeholder: "Seu endereço de email",
+                placeholder: "Endereço de email",
                 style: "color: black;" // Estilo para definir a cor do texto como preto
             }
         },
@@ -68,7 +68,6 @@ function salvarEmail() {
 }
 
 
-
 // chamar a função salvarEmail
 salvarEmail()
 
@@ -93,13 +92,13 @@ $enviarMail.addEventListener('submit', (e) => {
 		// Capturar os dados do formulário
 		let $nome = document.querySelector('#nome').value
 		let $mensagem = document.querySelector('#mensagem').value
-		let $email = document.querySelector('#email').value
+		let $correio = document.querySelector('#correio').value
 
 		// Se os campos estiverem vazios no envio
 		if (
 			$nome === '' ||
 			$mensagem === '' ||
-			$email === ''
+			$correio === ''
 		) {
 			swal('Error', 'Preenche todos os campos, por favor!', 'error')
 		} else {
@@ -117,11 +116,12 @@ $enviarMail.addEventListener('submit', (e) => {
 				
 				.then((response) => response.json())
 				.then((data) => {
+					console.log(data);
 					if (!data.error) {
 						swal('Perfeito', data.mensagem, 'success')
 						$nome = ''
 						$mensagem = ''
-						$email = ''
+						$correio = ''
 					} else {
 						swal('Sentimos muito', data.mensagem, 'warning')
 					}

@@ -25,7 +25,7 @@
       <label for="nome">Nome</label>
       <input type="text" class="form-control" id="nome" placeholder="Digite o teu nome..." name="nome" required />
       <label for="email">E-mail</label>
-      <input type="email" class="form-control" id="email" placeholder="Digite o teu email..." name="email" required />
+      <input type="email" class="form-control" id="correio" placeholder="Digite o teu email..." name="correio" required />
       <label for="mensagem">Mensagem</label>
       <textarea name="mensagem" id="mensagem" class="form-control" placeholder="Digite a tua mensagem..." required></textarea>
       <button type="submit" data-button>Enviar Mensagem</button>

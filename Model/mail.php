@@ -1,9 +1,9 @@
 <?php
-  header("Content-Type: application/json; charset=UTF-8");
+  header('Content-Type: application/json');  
   
   $nomeUsuario = $_POST['nome'];
   $mensagemUsuario = $_POST['mensagem'];
-  $emailUsuario = $_POST['email'];
+  $emailUsuario = $_POST['correio'];
 
   $email = $_POST['email'];
 
@@ -17,6 +17,17 @@
   $to = $email;
   // assunto da mensagem
   $subject = "Mensagem de Contato !IMPORTANTE!";
+  
+  //Para o envio em formato HTML 
+  
+  // Configurações do cabeçalho do email
+  //$headers = "MIME-Version: 1.0" . "\r\n";
+  $headers = "From: $from\r\n";
+  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+  $headers .= "From: <$emailUsuario>" . "\r\n";
+  $headers .= "Cc: $to" . "\r\n";
+ 
+  
   // Conteúdo da mensagem
   $mensagem = "
     <!DOCTYPE html>
@@ -107,14 +118,16 @@
     </html>
   ";
 
-  //Para o envio em formato HTML 
   
-  // Configurações do cabeçalho do email
-  $headers = "MIME-Version: 1.0" . "\r\n";
-  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-  $headers .= "From: <$emailUsuario>" . "\r\n";
-  $headers .= "Cc: $to" . "\r\n";
-  
+  // Verificar se todos os campos foram recebidos
+  if (empty($nomeUsuario) || empty($mensagemUsuario) || empty($emailUsuario)) {
+    echo json_encode(array(
+        'success' => false,
+        'message' => 'Por favor, preencha todos os campos do formulário.'
+    ));
+    exit;
+  }
+
 
   // Enviar o email
   $sendMail = mail($to, $subject, $mensagem, $headers);
