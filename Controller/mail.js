@@ -106,8 +106,8 @@ $enviarMail.addEventListener('submit', (e) => {
 			let formData = new FormData($enviarMail)
 			formData.append('email', emailUser)
 
-			const url = './Model/mail.php'
-
+			const url = "/Model/mail.php"
+			
 			// Utilizar fetch para enviar os dados para o Backend
 			fetch(url, {
 				method: 'POST',
@@ -117,6 +117,7 @@ $enviarMail.addEventListener('submit', (e) => {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data);
+					console.log(typeof data);
 					if (!data.error) {
 						swal('Perfeito', data.mensagem, 'success')
 						$nome = ''

@@ -7,7 +7,7 @@
 
   $email = $_POST['email'];
 
-  // As duas primeiras linhas permitem a informação de erros
+  // Essas 2 linhas exibem relatórios de erros
   ini_set( 'display_errors', 1 );
   error_reporting( E_ALL );
 
@@ -18,7 +18,6 @@
   // assunto da mensagem
   $subject = "Mensagem de Contato !IMPORTANTE!";
   
-  //Para o envio em formato HTML 
   
   // Configurações do cabeçalho do email
   //$headers = "MIME-Version: 1.0" . "\r\n";
@@ -146,6 +145,4 @@
           'message' => 'Houve um problema ao enviar a sua mensagem. Por favor, tente mais tarde.'
       ));
   } 
-
-  //echo($nombre);
 ?>

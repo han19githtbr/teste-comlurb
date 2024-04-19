@@ -19,7 +19,7 @@
       </div>
 
       <div class="footer">
-        Pode mandar email no <span>exemplo@gmail.com</span>
+        Pode mandar email para: <span>exemplo@gmail.com</span>
       </div>
     </div>
   </div>
